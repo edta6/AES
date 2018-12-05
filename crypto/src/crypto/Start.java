@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public class Start {
 	
-	 int numRounds; // z góry narzucona liczba obrotów dla klucza 128 bit
+	 int numRounds; 
 	 int ilosc, licznik, g, j, i, t, k;
 	 String FILE_NAME = "";
 	 String key = "";
@@ -35,7 +35,8 @@ public class Start {
 			licznik = ilosc/16;
 		 }
 
-		 
+		
+		//Funkcja wyliczaj¹ca iloœæ rund koduj¹cych na podstawie d³ugoœci klucza. 
 		public void CalcNumRounds(String key) {
 			
 			int temp=key.length();
@@ -44,8 +45,6 @@ public class Start {
 			
 		}
 		
-		
-		 
 		public void fileCode( ) throws IOException {
 			
 		     k = 0;

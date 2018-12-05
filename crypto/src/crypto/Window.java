@@ -1,5 +1,6 @@
 package crypto;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -12,19 +13,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class Window extends Application {  
 	
-    private Stage primaryStage;
+    private Stage primaryStage, stage;
     private Scene scene;
     private GridPane grid;
     private Text title;
-    private HBox hbTitle, hbUserTextField, hbPW, hbBtn, hbBtn1;
+    private HBox hbTitle, hbUserTextField, hbPW, hbBtn, hbBtn1, hbBtn2;
     private Label userName, pw;
-    private Button btn, btn1;
+    private Button btn, btn1, btn2;
     private TextField userTextField, pwBox;
-
+    File test;
+    
     private void prepareScene(){
         
         grid = new GridPane();
@@ -110,6 +113,29 @@ public class Window extends Application {
             }
         });
         //--------------------
+        
+        btn2 = new Button("Wybierz plik");
+        btn2.setId("btnSing");
+        
+        hbBtn2 = new HBox(10);
+        hbBtn2.setId("hbBtn");
+        hbBtn2.getChildren().add(btn2);
+        grid.add(hbBtn2, 0, 5, 2, 1);
+        
+        btn2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	stage = new Stage();
+            	FileChooser fileChooser = new FileChooser();
+            	fileChooser.setTitle("Open Resource File");
+            	test = fileChooser.showOpenDialog(null);
+            	userTextField.setText(test.getAbsolutePath());
+            }
+        });
+        //--------------------
+        
+        
+        
         
         scene = new Scene(grid);
         
