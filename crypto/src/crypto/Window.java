@@ -76,6 +76,7 @@ public class Window extends Application {
             public void handle(ActionEvent event) {
                 Start program = new Start(userTextField.getText(),pwBox.getText());
                 try {
+                	program.CalcNumRounds(pwBox.getText());
 					program.readByte();
 					program.fileCode();
 				} catch (IOException e) {
@@ -99,6 +100,7 @@ public class Window extends Application {
             public void handle(ActionEvent event) {
                 Start program1 = new Start(userTextField.getText(),pwBox.getText());
                 try {
+                	program1.CalcNumRounds(pwBox.getText());
 					program1.readByte();
 					program1.fileDecode();
 				} catch (IOException e) {

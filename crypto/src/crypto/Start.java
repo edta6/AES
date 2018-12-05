@@ -1,6 +1,5 @@
 package crypto;
 
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,7 +8,7 @@ import java.nio.file.Paths;
 
 public class Start {
 	
-	 int numRounds = 10; // z góry narzucona liczba obrotów dla klucza 128 bit
+	 int numRounds; // z góry narzucona liczba obrotów dla klucza 128 bit
 	 int ilosc, licznik, g, j, i, t, k;
 	 String FILE_NAME = "";
 	 String key = "";
@@ -36,6 +35,17 @@ public class Start {
 			licznik = ilosc/16;
 		 }
 
+		 
+		public void CalcNumRounds(String key) {
+			
+			int temp=key.length();
+			
+			numRounds=((temp*4)/16)-1;
+			
+		}
+		
+		
+		 
 		public void fileCode( ) throws IOException {
 			
 		     k = 0;
