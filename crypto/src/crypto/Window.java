@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 public class Window extends Application {  
 	
-    private Stage primaryStage, stage;
+    private Stage primaryStage;
     private Scene scene;
     private GridPane grid;
     private Text title;
@@ -125,7 +125,6 @@ public class Window extends Application {
         btn2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	stage = new Stage();
             	FileChooser fileChooser = new FileChooser();
             	fileChooser.setTitle("Open Resource File");
             	test = fileChooser.showOpenDialog(null);

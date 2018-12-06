@@ -14,28 +14,22 @@ public class Start {
 	 String key = "";
 	 private byte[] bytes;
 	 private byte[] bytes1;
-	 Path path, path1, path2;
+	 Path path;
 	//String klucz = new String("0A935D11496532BC1004865ABDCA4295");
 	 
 	 public Start(String file, String key) {
 		 this.FILE_NAME = file;
 		 this.key = key;
 	 }
-	
-		 final String OUTPUT_FILE_NAME = new String("C:\\Temp\\Output_cod.docx");
-		 final String OUTPUT_FILE_NAME1 = new String("C:\\Temp\\Output_dec.docx");
-		 		 
+	 
 		 public void readByte( ) throws IOException {
 			path = Paths.get(FILE_NAME);
-			path1 = Paths.get(OUTPUT_FILE_NAME);
-			path2 = Paths.get(OUTPUT_FILE_NAME1);
 			bytes = Files.readAllBytes(path);
 			bytes1 = Files.readAllBytes(path);
 			ilosc = bytes.length;
 			licznik = ilosc/16;
 		 }
 
-		
 		//Funkcja wyliczaj¹ca iloœæ rund koduj¹cych na podstawie d³ugoœci klucza. 
 		public void CalcNumRounds(String key) {
 			
@@ -95,7 +89,7 @@ public class Start {
 				}
 			}
 
-			Files.write(path1, bytes1);
+			Files.write(path, bytes1);
 		
 		}
 
@@ -149,7 +143,7 @@ public class Start {
 				}
 			}
 
-			Files.write(path2, bytes1);
+			Files.write(path, bytes1);
 
 		}
 }
