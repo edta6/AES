@@ -7,6 +7,8 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -78,6 +80,8 @@ public class Window extends Application {
             @Override
             public void handle(ActionEvent event) {
                 Start program = new Start(userTextField.getText(),pwBox.getText());
+                String temp = new String(pwBox.getText());
+                if(temp.length()==32 || temp.length()==48 || temp.length()==64 ) {
                 try {
                 	program.CalcNumRounds(pwBox.getText());
 					program.readByte();
@@ -86,6 +90,15 @@ public class Window extends Application {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+                }
+                else {
+                	Alert alert = new Alert(AlertType.ERROR);
+                	alert.setTitle("Error Dialog");
+                	alert.setHeaderText("Look, an Error Dialog");
+                	alert.setContentText("Z³a d³ugoœæ klucza!");
+
+                	alert.showAndWait();
+                }
             }
         });
         
@@ -102,6 +115,8 @@ public class Window extends Application {
             @Override
             public void handle(ActionEvent event) {
                 Start program1 = new Start(userTextField.getText(),pwBox.getText());
+                String temp = new String(pwBox.getText());
+                if(temp.length()==32 || temp.length()==48 || temp.length()==64 ) {
                 try {
                 	program1.CalcNumRounds(pwBox.getText());
 					program1.readByte();
@@ -110,6 +125,18 @@ public class Window extends Application {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+                }
+                
+                else {
+                	Alert alert = new Alert(AlertType.ERROR);
+                	alert.setTitle("Error Dialog");
+                	alert.setHeaderText("Look, an Error Dialog");
+                	alert.setContentText("Z³a d³ugoœæ klucza!");
+
+                	alert.showAndWait();
+                }
+                
+            
             }
         });
         //--------------------
