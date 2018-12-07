@@ -32,10 +32,8 @@ public class Start {
 
 		//Funkcja wyliczaj¹ca iloœæ rund koduj¹cych na podstawie d³ugoœci klucza. 
 		public void CalcNumRounds(String key) {
-			
-			int temp=key.length();
-			
-			numRounds=((temp*4)/16)-1;
+				
+			numRounds= 10 + (((key.length() * 4 - 128) / 32));;
 			
 		}
 		

@@ -288,10 +288,11 @@ public class AES {
 
     public int[][] keySchedule(String key)
     {
-
+    	
+    	int licznik=0;
         int binkeysize = key.length() * 4; // d³ugoœæ klucza 
         int colsize = binkeysize + 48 - (32 * ((binkeysize / 64) - 2)); //size of key scheduling will be based on the binary size of the key.
-        int[][] keyMatrix = new int[4][colsize / 4]; //creates the matrix for key scheduling
+        int[][] keyMatrix = new int[4][(colsize / 4)]; //creates the matrix for key scheduling
         int rconpointer = 1;
         int[] t = new int[4];
         final int keycounter = binkeysize / 32;
@@ -302,6 +303,14 @@ public class AES {
             for (int j = 0; j < 4; j++) {
                 keyMatrix[j][i] = Integer.parseInt(key.substring((8 * i) + (2 * j), (8 * i) + (2 * j + 2)), 16);
             }
+        }
+        
+        
+        if(binkeysize == 128 || binkeysize == 256) {
+        	licznik = 3;
+        }
+        else {
+        	licznik = 5;
         }
         
         int keypoint = keycounter;
@@ -317,19 +326,25 @@ public class AES {
                     keyMatrix[k][keypoint] = t[k] ^ keyMatrix[k][keypoint - keycounter];
                 }
                 keypoint++;
-            } else if (temp == 4) {
+            } else if (temp == 4 && binkeysize == 256) {
+            	//only for 256 bit key
                 for (k = 0; k < 4; k++) {
                     int hex = keyMatrix[k][keypoint - 1];
                     keyMatrix[k][keypoint] = sbox[hex / 16][hex % 16] ^ keyMatrix[k][keypoint - keycounter];
                 }
                 keypoint++;
             } else {
-                int ktemp = keypoint + 3;
+                int ktemp = keypoint + licznik;
                 while (keypoint < ktemp) {
+                	if(binkeysize == 192 && keypoint == 52) {
+                		break;
+                	}
+                	else {
                     for (k = 0; k < 4; k++) {
                         keyMatrix[k][keypoint] = keyMatrix[k][keypoint - 1] ^ keyMatrix[k][keypoint - keycounter];
                     }
                     keypoint++;
+                	}
                 }
             }
         }
